@@ -1,0 +1,7 @@
+JEST docs:
+https://jestjs.io/docs/getting-started
+- used to run tests
+
+inquirer docs:
+https://www.npmjs.com/package/inquirer/v/8.2.4
+- used to run command-line prompts
