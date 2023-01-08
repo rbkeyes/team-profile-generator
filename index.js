@@ -47,6 +47,8 @@ function init() {
         .prompt(employeeQuestions)
         .then((data) => {
             console.log(data);
+            const employee = new Employee(data.name, data.id, data.email);
+            console.log(employee)
             return data;
         })
     };
