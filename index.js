@@ -1,21 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const {employee} = require('./lib.employee');
 
-const employeeInfo = [
-    {
-        type: 'input',
-        message: `Enter the ${this.role}'s name.`,
-        name: 'name',
-    }, {
-        type: 'input',
-        message: `Enter ${this.name}'s employee id.`,
-        name: 'name',
-    }, {
-        type: 'input',
-        message: `Enter ${this.name}'s email address.`,
-        name: 'email',
-    } 
-]
 
 const officeNumber = [
     {
@@ -40,3 +26,15 @@ const school = [
         name: 'school',
     }
 ]
+
+function init() {
+
+    inquirer
+        .prompt(employeeQuestions)
+        .then((data) => {
+            console.log(data);
+            return data;
+        })
+    };
+
+init();
