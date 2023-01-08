@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const employee = require('./lib/employee');
+const employee = require('./lib/Employee');
 
 const employeeQuestions = [
     {
