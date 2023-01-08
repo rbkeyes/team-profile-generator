@@ -11,7 +11,7 @@ describe('Employee class', () => {
         expect(employeeTest).toEqual(employeeObj);
     });
 
-    describe('getName', () => {
+    describe('getName method', () => {
         it('Should return this.name', () => {
             const employeeName = employeeObj.name;
             console.log(employeeName);
@@ -21,7 +21,7 @@ describe('Employee class', () => {
         })
     });
 
-    describe('getID', () => {
+    describe('getID method', () => {
         it('Should return this.id', () => {
             const employeeId = employeeObj.id;
             console.log(employeeId);
@@ -31,7 +31,7 @@ describe('Employee class', () => {
         })
     });
 
-    describe('getEmail', () => {
+    describe('getEmail method', () => {
         it('Should return this.email', () => {
             const employeeEmail = employeeObj.email;
             console.log(employeeEmail);
@@ -41,7 +41,7 @@ describe('Employee class', () => {
         })
     });
 
-    describe('getRole', () => {
+    describe('getRole method', () => {
         it('Should return "Employee"', () => {
             const employeeRole = "Employee";
             console.log(employeeRole);
