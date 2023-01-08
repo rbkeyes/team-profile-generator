@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const employee = require('./lib/employee');
+const Employee = require('./lib/employee');
 
 const employeeQuestions = [
     {
@@ -47,6 +47,8 @@ function init() {
         .prompt(employeeQuestions)
         .then((data) => {
             console.log(data);
+            const employee = new Employee(data.name, data.id, data.email);
+            console.log(employee)
             return data;
         })
     };
