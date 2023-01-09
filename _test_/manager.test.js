@@ -1,5 +1,4 @@
 // class contructor
-const Employee = require('../lib/employee');
 const Manager = require('../lib/Manager');
 
 // const to be used for test
@@ -10,7 +9,7 @@ console.log(managerTest);
 
 // tests for Manager 
 describe('Manager class', () => {
-    it('Should return an employee object containing this.officeNumber in addition to basic employee info', () => {
+    it('Should return an employee object containing office number in addition to basic employee info', () => {
         expect(managerTest).toEqual(managerObj);
     });
 
