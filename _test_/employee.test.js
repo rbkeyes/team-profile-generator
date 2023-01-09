@@ -2,9 +2,9 @@
 const Employee = require('../lib/employee');
 
 // const to be used for test
-const employeeObj = { name: 'Bob', id: 2, email: "bob@email.com" };
+const employeeObj = { name: 'Bob', id: 0, email: "bob@email.com" };
 console.log(employeeObj);
-const employeeTest = new Employee("Bob", 2, "bob@email.com");
+const employeeTest = new Employee("Bob", 0, "bob@email.com");
 console.log(employeeTest);
 
 // tests for Employee 
