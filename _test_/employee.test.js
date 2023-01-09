@@ -2,10 +2,12 @@
 const Employee = require('../lib/employee');
 
 // const to be used for test
-const employeeObj = { name: 'Bob', id: "1", email: "email@email.com" };
-const employeeTest = new Employee("Bob", "1", "email@email.com");
+const employeeObj = { name: 'Bob', id: 2, email: "bob@email.com" };
+console.log(employeeObj);
+const employeeTest = new Employee("Bob", 2, "bob@email.com");
+console.log(employeeTest);
 
-
+// tests for Employee 
 describe('Employee class', () => {
     it('Should return an employee object containing name, id, and email', () => {
         expect(employeeTest).toEqual(employeeObj);
