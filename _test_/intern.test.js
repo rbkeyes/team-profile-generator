@@ -1,10 +1,10 @@
 // class contructor
-const Engineer = require('../lib/Engineer');
+const Intern = require('../lib/Intern');
 
 // const to be used for test
 const internObj = {name: 'Toni', id: 3, email: "toni@email.com", school: 'Pretty Good University'};
 console.log(internObj);
-const internTest = new Engineer('Toni', 3, 'toni@email.com', 'Pretty Good University')
+const internTest = new Intern('Toni', 3, 'toni@email.com', 'Pretty Good University')
 console.log(internTest);
 
 // tests for intern 
@@ -19,7 +19,7 @@ describe('Intern class', () => {
             console.log(internRole);
             const roleTest = internTest.getRole();
             console.log(roleTest);
-            expect(roleTest).toEqual(internTest);
+            expect(roleTest).toEqual(internRole);
         })
     });
 });
