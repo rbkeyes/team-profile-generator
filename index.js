@@ -1,56 +1,62 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const Employee = require('./lib/employee');
+// const Employee = require('./lib/employee');
+// const Manager = require('./lib/manager');
 
 const employeeQuestions = [
+    {
+        type: 'list',
+        message: 'Select employee role from list below:',
+        choices: ['manager', 'engineer', 'intern',],
+        name: 'role'
+    },
     {
         type: 'input',
         message: `Enter employee's name.`,
         name: 'name',
     }, {
-        type: 'input',
+        type: 'number',
         message: `Enter employee id.`,
         name: 'id',
     }, {
         type: 'input',
         message: `Enter employee's email address.`,
         name: 'email',
-    } 
-]
-
-const officeNumber = [
+    } ,
     {
-        type: 'input',
-        message: `Enter ${this.name}'s office number.`,
+        type: 'number',
+        message: `Enter the manager's office number.`,
         name: 'office',
-    }
-]
-
-const gitHub = [
+    },
     {
         type: 'input',
-        message: `Enter ${this.name}'s GitHub user name.`,
+        message: `Enter this engineer's GitHub user name.`,
         name: 'github',    
-    }
-]
-
-const school = [
+    },
     {
         type: 'input',
-        message: `Enter the name of ${this.name}'s school.`,
+        message: `Enter the name of this intern's school.`,
         name: 'school',
+    },
+    {
+        type: 'confirm',
+        message: 'Would you like to add another Employee?',
+        name: 'add'
     }
 ]
 
-function init() {
+function addEmployee() {
     inquirer
         .prompt(employeeQuestions)
         .then((data) => {
             console.log(data);
             const employee = new Employee(data.name, data.id, data.email);
-            console.log(employee)
+            const manager = new Manager(data.officeNumber);
+            console.log(employee);
+            console.log(employee.getRole)
+            console.log(manager);
             return data;
         })
     };
 
-init();
+addEmployee();
