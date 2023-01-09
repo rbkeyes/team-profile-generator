@@ -7,14 +7,14 @@ console.log(engineerObj);
 const engineerTest = new Engineer('Parker', 2, 'parker@email.com', 'pretendparker')
 console.log(engineerTest);
 
-// tests for Manager 
+// tests for engineer 
 describe('Engineer class', () => {
     it('Should return an employee object containing github username in addition to basic employee info', () => {
         expect(engineerTest).toEqual(engineerObj);
     });
 
     describe('getRole method', () => {
-        it('Should return "Manager"', () => {
+        it('Should return "Engineer"', () => {
             const engineerRole = "Engineer";
             console.log(engineerRole);
             const roleTest = engineerTest.getRole();
