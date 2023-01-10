@@ -1,7 +1,15 @@
+// inquirer
 const inquirer = require('inquirer');
+// fs
 const fs = require('fs');
-// const Employee = require('./lib/employee');
-// const Manager = require('./lib/manager');
+// constructors
+const Employee = require('./lib/employee');
+const Manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
+
+// other variables
+const employees = [];
 
 const employeeQuestions = [
     {
@@ -45,18 +53,18 @@ const employeeQuestions = [
     }
 ]
 
-function addEmployee() {
+function addManager() {
     inquirer
         .prompt(employeeQuestions)
-        .then((data) => {
-            console.log(data);
-            const employee = new Employee(data.name, data.id, data.email);
-            const manager = new Manager(data.officeNumber);
+        .then((answers) => {
+            console.log(answers);
+            const employee = new Employee(answers.name, answers.id, answers.email);
+            const manager = new Manager(answers.officeNumber);
             console.log(employee);
             console.log(employee.getRole)
             console.log(manager);
-            return data;
+            return answers;
         })
     };
 
-addEmployee();
+addManager();
