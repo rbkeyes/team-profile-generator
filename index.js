@@ -8,7 +8,7 @@ const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 
-const employees = '';
+const employees = [];
 
 // all prompts
 const prompts = {
@@ -77,14 +77,14 @@ const internObj = '';
 //     }
 // };
 
-function addEmployee() {
+function addEmployee(role) {
     inquirer.prompt(managerPrompts)
         .then((answers) => {
             console.log(answers)
-            if (prompts === managerPrompts) {
+            if (role === 'manager') {
                 console.log(`Adding a manager.`)
                 const manager = new Manager(answers)
-                employees = [`manager: ${manager.getRole()}: ${manager}`]
+                employees.push(manager)
                 console.log(employees);
             } ;
             // else if (role === 'engineer') {
@@ -95,6 +95,6 @@ function addEmployee() {
         })
         // return employees;
 };
-addEmployee()
+addEmployee('manager')
 
 // runProgram();
