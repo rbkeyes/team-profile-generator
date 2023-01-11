@@ -11,90 +11,99 @@ const Intern = require('./lib/intern');
 const employees = [];
 
 // all prompts
-const prompts = {
+const allPrompts = {
     role: {
+        name: 'role',
         type: 'list',
         message: 'Select role from list below:',
         choices: ['engineer', 'intern',],
-        name: 'role'
     },
     name: {
+        name: 'name',
         type: 'input',
         message: `Enter employee's name.`,
-        name: 'name',
     },
     id: {
+        name: 'id',
         type: 'number',
         message: `Enter employee id.`,
-        name: 'id',
     },
     email: {
+        name: 'email',
         type: 'input',
         message: `Enter employee's email address.`,
-        name: 'email',
     },
     officeNum: {
+        name: 'officeNum',
         type: 'number',
         message: `Enter the manager's office number.`,
-        name: 'officeNum',
     },
     gitHub: {
+        name: 'github',
         type: 'input',
         message: `Enter the engineer's GitHub user name.`,
-        name: 'github',
-        description: 'engineer'
     },
     school: {
+        name: 'school',
         type: 'input',
         message: `Enter the name of the intern's school.`,
-        name: 'school',
-        description: 'intern'
     },
-    addMore: {
-        type: 'confirm',
-        message: 'Would you like to add another employee?',
-        name: 'add'
+    menu: {
+        name: 'menu',
+        type: 'list',
+        message: 'What would you like to do next?',
+        choices: ['Add an Engineer to the team.', 'Add an Intern to the team.', 'Finish building my team.',],
     }
 }
-// employee objects to be written to file
-const managerPrompts = [prompts.name, prompts.id, prompts.email, prompts.officeNum];
-// console.log(managerPrompts);
-const engineerObj = '';
-const internObj = '';
+// specific prompts for manager, engineer, and intern data
+const managerPrompt = allPrompts.officeNum;
+const engineerPrompt = allPrompts.gitHub;
+const internPrompt = allPrompts.school;
 
-// function runProgram() {
-//     if (!employees) {
-//         console.log('No employees yet. Enter name below to add first employee.');
-//         addEmployee(managerPrompts)
-//     // } else {
-//     //     inquirer.prompt({
-//     //         type: 'list',
-//     //         message: 'Select role from list below:',
-//     //         choices: ['engineer', 'intern',],
-//     //         name: 'role'
-//     //     },).then((answer) => {console.log(answer)})
-//     //     .then(addEmployee(answer.role));
-//     }
-// };
+function runProgram(role) {
+    // if (role = 'manager') {
+        console.log(`Adding a(n) ${role}.`);
+        switch (role) {
+            case 'manager':
+                addEmployee(role, managerPrompt);
+                break;
+            case 'engineer':
+                addEmployee(role, engineerPrompt);
+                break;
+            case 'intern':
+                addEmployee(role, internPrompt);
+                break;
+        }
+};
 
-function addEmployee(role) {
-    inquirer.prompt(managerPrompts)
+function addEmployee(role, prompt) {
+    const employeePrompts = [allPrompts.name, allPrompts.id, allPrompts.email, prompt]
+    inquirer.prompt(employeePrompts)
         .then((answers) => {
             console.log(answers)
-            if (role === 'manager') {
-                console.log(`Adding a manager.`)
-                const manager = new Manager(answers)
-                employees.push(manager)
-                console.log(employees);
-            } ;
-            // else if (role === 'engineer') {
-            //     addEngineer(answer);
-            // } else {
-            //     addIntern(answer);
-            // }
+            switch (role) {
+                case 'manager':
+                    const manager = new Manager(answers);
+                    employees.push(manager);
+                    console.log(manager.getRole());
+                    console.log(employees);
+                    break;
+                case 'engineer':
+                    const engineer = new Engineer(answers);
+                    employees.push(engineer);
+                    console.log(engineer.getRole());
+                    console.log(employees);
+                    break;
+                case 'intern':
+                    const intern = new Intern(answers);
+                    employees.push(intern);
+                    console.log(intern.getRole());
+                    console.log(employees);
+                    break;
+            }
         })
-        // return employees;
+    // return employees;
 };
-addEmployee('manager')
 
+runProgram('intern')
 // runProgram();
