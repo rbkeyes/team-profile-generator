@@ -3,23 +3,28 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 // class constructors
-const Employee = require('./lib/employee');
+// const Employee = require('./lib/employee');
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 
 // all prompts (to be run by inquirer)
 const questionObj = {
-    role: {
-        name: 'role',
+    managerName: {
+        name: 'managerName',
+        type: 'input',
+        message: 'To start, please enter the name of the team manager.',
+    },
+    mainMenu: {
+        name: 'mainMenu',
         type: 'list',
-        message: 'Select role from list below:',
-        choices: ['manager', 'engineer', 'intern'],
+        message: 'What would you like to do?',
+        choices: ['Add a team Manager', 'Add an Engineer to the team.', 'Add an Intern to the team.', 'Finish building my team.']
     },
     name: {
         name: 'name',
         type: 'input',
-        message: `Enter ${answers.role}'s name.`,
+        message: `Enter employee's name.`,
     },
     id: {
         name: 'id',
@@ -46,77 +51,64 @@ const questionObj = {
         type: 'input',
         message: `Enter the name of the intern's school.`,
     },
-    menu: {
-        name: 'menu',
-        type: 'list',
-        message: 'What would you like to do next?',
-        choices: ['Add an Engineer to the team.', 'Add an Intern to the team.', 'Finish building my team.',],
-    }
 }
 
 // empty array to hold employees as they are added
 const team = [];
 
 // specific prompts for role, manager, engineer, and intern data, as well as main menu;
-const employeePrompts = [questionObj.name, questionObj.id, questionObj.email];
-const rolePrompt = questionObj.role;
-const managerPrompt = questionObj.officeNum;
-const engineerPrompt = questionObj.gitHub;
-const internPrompt = questionObj.school;
-const menuPrompt = questionObj.menu;
+// remove manager name & push main menu to end of array after adding manager
+const employeePrompts = [questionObj.managerName, questionObj.name, questionObj.id, questionObj.email];
 
 
 function runProgram() {
 
-    function addNewEmployee() {
-        
+    function addNewTeamMember() {
+
         switch (role) {
             case 'manager':
                 addManager();
                 break;
             case 'engineer':
-                employeePrompts.push(engineerPrompt);
                 team.push = new Engineer(answers);
                 break;
             case 'intern':
-                employeePrompts.push(internPrompt);
                 team.push = new Intern(answers);
                 break;
         }
         return team;
     };
 
-function addManager() {
-    employeePrompts.push(managerPrompt);
-    inquirer.prompt(prompt)
-        .then((answers) => {
-            console.log(answers)
-            team.push = new Manager(answers);
-            return team;
-        })
+    function addManager() {
+        employeePrompts.push(questionObj.officeNum);
+        inquirer.prompt(prompt)
+            .then((answers) => {
+                console.log(answers)
+                team.push = new Manager(answers);
+                return team;
+            })
+    };
+
+    function addEngineer() {
+        employeePrompts.push(questionObj.gitHub);
+        inquirer.prompt(prompt)
+            .then((answers) => {
+                console.log(answers)
+                team.push = new Manager(answers);
+                return team;
+            })
+    };
+
+    function addIntern() {
+        employeePrompts.push(questionObj.school);
+        inquirer.prompt(prompt)
+            .then((answers) => {
+                console.log(answers)
+                team.push = new Manager(answers);
+                return team;
+            })
+    };
+addNewTeamMember();
 };
 
-function addEngineer() {
-    employeePrompts.push(managerPrompt);
-    inquirer.prompt(prompt)
-        .then((answers) => {
-            console.log(answers)
-            team.push = new Manager(answers);
-            return team;
-        })
-};
-
-function addIntern() {
-    employeePrompts.push(managerPrompt);
-    inquirer.prompt(prompt)
-        .then((answers) => {
-            console.log(answers)
-            team.push = new Manager(answers);
-            return team;
-        })
-};
-
-};
-
-// employeeRole = 'engineer'
 runProgram();
