@@ -14,12 +14,12 @@ const questionObj = {
         name: 'role',
         type: 'list',
         message: 'Select role from list below:',
-        choices: ['engineer', 'intern', 'back to main menu'],
+        choices: ['manager', 'engineer', 'intern'],
     },
     name: {
         name: 'name',
         type: 'input',
-        message: `Enter employee's name.`,
+        message: `Enter ${answers.role}'s name.`,
     },
     id: {
         name: 'id',
@@ -68,17 +68,11 @@ const menuPrompt = questionObj.menu;
 
 function runProgram() {
 
-    function addNewEmployee(role) {
-        if (!role) {
-            role = 'manager'
-            employeeRole = role;
-        } {
-            employeeRole = role;
-        };
+    function addNewEmployee() {
+        
         switch (role) {
             case 'manager':
-                employeePrompts.push(managerPrompt);
-                team.push = new Manager(answers);
+                addManager();
                 break;
             case 'engineer':
                 employeePrompts.push(engineerPrompt);
@@ -92,19 +86,34 @@ function runProgram() {
         return team;
     };
 
-function addManager(prompt) {
+function addManager() {
+    employeePrompts.push(managerPrompt);
     inquirer.prompt(prompt)
         .then((answers) => {
             console.log(answers)
-            return answers;
+            team.push = new Manager(answers);
+            return team;
         })
 };
 
+function addEngineer() {
+    employeePrompts.push(managerPrompt);
+    inquirer.prompt(prompt)
+        .then((answers) => {
+            console.log(answers)
+            team.push = new Manager(answers);
+            return team;
+        })
+};
 
-function addToTeam(newEmployee) {
-    team.push(newEmployee);
-    console.log(team);
-    return team;
+function addIntern() {
+    employeePrompts.push(managerPrompt);
+    inquirer.prompt(prompt)
+        .then((answers) => {
+            console.log(answers)
+            team.push = new Manager(answers);
+            return team;
+        })
 };
 
 };
