@@ -2,21 +2,23 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-// class modules
+// class constructors
 const Employee = require('./lib/employee');
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 
-const employees = [];
+// // file to be written
+let employeeRole = ''
+const team = [];
 
 // all prompts
-const allPrompts = {
+const questionObj = {
     role: {
         name: 'role',
         type: 'list',
         message: 'Select role from list below:',
-        choices: ['engineer', 'intern',],
+        choices: ['engineer', 'intern', 'back to main menu'],
     },
     name: {
         name: 'name',
@@ -55,55 +57,79 @@ const allPrompts = {
         choices: ['Add an Engineer to the team.', 'Add an Intern to the team.', 'Finish building my team.',],
     }
 }
-// specific prompts for manager, engineer, and intern data
-const managerPrompt = allPrompts.officeNum;
-const engineerPrompt = allPrompts.gitHub;
-const internPrompt = allPrompts.school;
+// specific prompts for role, manager, engineer, and intern data, as well as main menu;
+const rolePrompt = questionObj.role;
+const managerPrompt = questionObj.officeNum;
+const engineerPrompt = questionObj.gitHub;
+const internPrompt = questionObj.school;
+const menuPrompt = questionObj.menu;
 
-function runProgram(role) {
-    // if (role = 'manager') {
-        console.log(`Adding a(n) ${role}.`);
-        switch (role) {
-            case 'manager':
-                addEmployee(role, managerPrompt);
-                break;
-            case 'engineer':
-                addEmployee(role, engineerPrompt);
-                break;
-            case 'intern':
-                addEmployee(role, internPrompt);
-                break;
-        }
+function getRole(role) {
+    if (!role) {
+        role = 'manager'
+    }{
+        
+    };
+    console.log(role);
+    return role;
 };
 
-function addEmployee(role, prompt) {
-    const employeePrompts = [allPrompts.name, allPrompts.id, allPrompts.email, prompt]
+function getPrompts(role) {
+    console.log(`Getting prompts for ${role} role.`);
+    switch (role) {
+        case 'manager':
+            prompt = managerPrompt;
+            break;
+        case 'engineer':
+            prompt = engineerPrompt;
+            break;
+        case 'intern':
+            prompt = internPrompt;
+            break;
+    };
+    return role, prompt;
+}
+
+function runPrompts(role, prompt) {
+    const employeePrompts = [questionObj.name, questionObj.id, questionObj.email, prompt]
+    let newEmployee = '';
     inquirer.prompt(employeePrompts)
         .then((answers) => {
             console.log(answers)
             switch (role) {
                 case 'manager':
-                    const manager = new Manager(answers);
-                    employees.push(manager);
-                    console.log(manager.getRole());
-                    console.log(employees);
+                    newEmployee = new Manager(answers);
+                    // const manager = new Manager(answers);
+                    // team.push(manager);
+                    // console.log(manager.getRole());
                     break;
                 case 'engineer':
-                    const engineer = new Engineer(answers);
-                    employees.push(engineer);
+                    newEmployee = new Engineer(answers);
+                    team.push(engineer);
                     console.log(engineer.getRole());
-                    console.log(employees);
                     break;
                 case 'intern':
-                    const intern = new Intern(answers);
-                    employees.push(intern);
+                    newEmployee = new Intern(answers);
+                    team.push(intern);
                     console.log(intern.getRole());
-                    console.log(employees);
                     break;
             }
         })
-    // return employees;
+        console.log(newEmployee);
+        return newEmployee;
 };
 
-runProgram('intern')
-// runProgram();
+// function addToTeam(newEmployee)
+
+
+// run program
+const runProgram = () => {
+    getRole(employeeRole)
+    // .then((role) => getPrompts(role))
+    // .then((role, prompt) => runPrompts(role, prompt))
+    // .then((newEmployee) => addToTeam(newEmployee))
+    // .then(())
+};
+
+// employeeRole = 'intern'
+runProgram();
