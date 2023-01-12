@@ -8,11 +8,7 @@ const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 
-// // file to be written
-let employeeRole = ''
-const team = [];
-
-// all prompts
+// all prompts (to be run by inquirer)
 const questionObj = {
     role: {
         name: 'role',
@@ -57,79 +53,61 @@ const questionObj = {
         choices: ['Add an Engineer to the team.', 'Add an Intern to the team.', 'Finish building my team.',],
     }
 }
+
+// empty array to hold employees as they are added
+const team = [];
+
 // specific prompts for role, manager, engineer, and intern data, as well as main menu;
+const employeePrompts = [questionObj.name, questionObj.id, questionObj.email];
 const rolePrompt = questionObj.role;
 const managerPrompt = questionObj.officeNum;
 const engineerPrompt = questionObj.gitHub;
 const internPrompt = questionObj.school;
 const menuPrompt = questionObj.menu;
 
-function getRole(role) {
-    if (!role) {
-        role = 'manager'
-    }{
-        
-    };
-    console.log(role);
-    return role;
-};
 
-function getPrompts(role) {
-    console.log(`Getting prompts for ${role} role.`);
-    switch (role) {
-        case 'manager':
-            prompt = managerPrompt;
-            break;
-        case 'engineer':
-            prompt = engineerPrompt;
-            break;
-        case 'intern':
-            prompt = internPrompt;
-            break;
-    };
-    return role, prompt;
-}
+function runProgram() {
 
-function runPrompts(role, prompt) {
-    const employeePrompts = [questionObj.name, questionObj.id, questionObj.email, prompt]
-    let newEmployee = '';
-    inquirer.prompt(employeePrompts)
+    function addNewEmployee(role) {
+        if (!role) {
+            role = 'manager'
+            employeeRole = role;
+        } {
+            employeeRole = role;
+        };
+        switch (role) {
+            case 'manager':
+                employeePrompts.push(managerPrompt);
+                team.push = new Manager(answers);
+                break;
+            case 'engineer':
+                employeePrompts.push(engineerPrompt);
+                team.push = new Engineer(answers);
+                break;
+            case 'intern':
+                employeePrompts.push(internPrompt);
+                team.push = new Intern(answers);
+                break;
+        }
+        return team;
+    };
+
+function addManager(prompt) {
+    inquirer.prompt(prompt)
         .then((answers) => {
             console.log(answers)
-            switch (role) {
-                case 'manager':
-                    newEmployee = new Manager(answers);
-                    // const manager = new Manager(answers);
-                    // team.push(manager);
-                    // console.log(manager.getRole());
-                    break;
-                case 'engineer':
-                    newEmployee = new Engineer(answers);
-                    team.push(engineer);
-                    console.log(engineer.getRole());
-                    break;
-                case 'intern':
-                    newEmployee = new Intern(answers);
-                    team.push(intern);
-                    console.log(intern.getRole());
-                    break;
-            }
+            return answers;
         })
-        console.log(newEmployee);
-        return newEmployee;
 };
 
-// function addToTeam(newEmployee)
 
-
-// run program
-const runProgram = () => {
-    getRole(employeeRole)
-    // .then((role) => getPrompts(role))
-    // .then((role, prompt) => runPrompts(role, prompt))
-    // .then((newEmployee) => addToTeam(newEmployee))
-    // .then(())
+function addToTeam(newEmployee) {
+    team.push(newEmployee);
+    console.log(team);
+    return team;
 };
 
-// employeeRole = 'intern'
+};
+
+// employeeRole = 'engineer'
 runProgram();
