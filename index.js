@@ -8,33 +8,33 @@ const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 
+let employeeRole = '';
+
+// empty array to hold employees as they are added
+const team = [];
+
 // all prompts (to be run by inquirer)
 const questionObj = {
-    managerName: {
-        name: 'managerName',
-        type: 'input',
-        message: 'To start, please enter the name of the team manager.',
-    },
     mainMenu: {
         name: 'mainMenu',
         type: 'list',
         message: 'What would you like to do?',
-        choices: ['Add a team Manager', 'Add an Engineer to the team.', 'Add an Intern to the team.', 'Finish building my team.']
+        choices: ['Add a team Manager', 'Add an Engineer to the team.', 'Add an Intern to the team.', 'Generate team profiles page!.']
     },
     name: {
         name: 'name',
         type: 'input',
-        message: `Enter employee's name.`,
+        message: `Enter the ${employeeRole}'s name.`,
     },
     id: {
         name: 'id',
         type: 'number',
-        message: `Enter employee id.`,
+        message: `Enter the ${employeeRole} employee id.`,
     },
     email: {
         name: 'email',
         type: 'input',
-        message: `Enter employee's email address.`,
+        message: `Enter the ${employeeRole}'s email address.`,
     },
     officeNum: {
         name: 'officeNum',
@@ -51,32 +51,31 @@ const questionObj = {
         type: 'input',
         message: `Enter the name of the intern's school.`,
     },
-}
-
-// empty array to hold employees as they are added
-const team = [];
+};
 
 // specific prompts for role, manager, engineer, and intern data, as well as main menu;
 // remove manager name & push main menu to end of array after adding manager
-const employeePrompts = [questionObj.managerName, questionObj.name, questionObj.id, questionObj.email];
-
+const employeePrompts = [questionObj.name, questionObj.id, questionObj.email];
 
 function runProgram() {
-
-    function addNewTeamMember() {
-
+// employee role tbd 
+    role = 'employeeRole';
+    console.log(role)
+    function addNewTeamMember(role) {
+        // check for existing team file
+        // if file exists, prompt main menu, then add employee based on role selected
+        // if no file, start with manager, plugging in role when prompting name, etc.
         switch (role) {
             case 'manager':
                 addManager();
                 break;
             case 'engineer':
-                team.push = new Engineer(answers);
+                addEngineer();
                 break;
             case 'intern':
-                team.push = new Intern(answers);
+                addIntern();
                 break;
         }
-        return team;
     };
 
     function addManager() {
@@ -84,6 +83,7 @@ function runProgram() {
         inquirer.prompt(prompt)
             .then((answers) => {
                 console.log(answers)
+                // replace below with function to retrieve team from team.js file, add new employee to existing team, and write file with new team array.
                 team.push = new Manager(answers);
                 return team;
             })
@@ -94,7 +94,7 @@ function runProgram() {
         inquirer.prompt(prompt)
             .then((answers) => {
                 console.log(answers)
-                team.push = new Manager(answers);
+                team.push = new Engineer(answers);
                 return team;
             })
     };
@@ -104,11 +104,18 @@ function runProgram() {
         inquirer.prompt(prompt)
             .then((answers) => {
                 console.log(answers)
-                team.push = new Manager(answers);
+                team.push = new Intern(answers);
                 return team;
             })
     };
+
+    // add function to 
+
+    // add function to read existing team.js file (if it exists), parse data, push new employee to array, and write file (overwriting old array with new array)
+        // when writing file initially must be sure to save as array of objects 
+
 addNewTeamMember();
 };
 
+employeeRole = 'manager';
 runProgram();
