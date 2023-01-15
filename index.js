@@ -3,10 +3,12 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 // class constructors
-// const Employee = require('./lib/employee');
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
+
+// inquirer prompts
+const { managerPrompts, engineerPrompts, internPrompts } = require('prompts.js')
 
 // employee role tbd by answer to mainMenu prompt
 let employeeRole = '';
@@ -16,50 +18,50 @@ let newEmployee = '';
 const team = [];
 const fileName = 'team.json';
 
-// all prompts (to be run by inquirer)
-const promptsObj = {
-    mainMenu: {
-        name: 'mainMenu',
-        type: 'list',
-        message: 'Select role from below to add a new team member.',
-        choices: ['manager']
-    },
-    name: {
-        name: 'name',
-        type: 'input',
-        message: `Enter the new team member's name.`,
-    },
-    id: {
-        name: 'id',
-        type: 'number',
-        message: `Enter their employee id.`,
-    },
-    email: {
-        name: 'email',
-        type: 'input',
-        message: `Enter their email address.`,
-    },
-    officeNum: {
-        name: 'officeNum',
-        type: 'number',
-        message: `Enter their office number.`,
-    },
-    gitHub: {
-        name: 'github',
-        type: 'input',
-        message: `Enter their GitHub user name.`,
-    },
-    school: {
-        name: 'school',
-        type: 'input',
-        message: `Enter the name of their school.`,
-    },
-    addMore: {
-        name: 'addMore',
-        type: 'confirm',
-        message: 'Would you like to add another team member?',
-    }
-};
+// // all prompts (to be run by inquirer)
+// const promptsObj = {
+//     mainMenu: {
+//         name: 'mainMenu',
+//         type: 'list',
+//         message: 'Select role from below to add a new team member.',
+//         choices: ['manager']
+//     },
+//     name: {
+//         name: 'name',
+//         type: 'input',
+//         message: `Enter the new team member's name.`,
+//     },
+//     id: {
+//         name: 'id',
+//         type: 'number',
+//         message: `Enter their employee id.`,
+//     },
+//     email: {
+//         name: 'email',
+//         type: 'input',
+//         message: `Enter their email address.`,
+//     },
+//     officeNum: {
+//         name: 'officeNum',
+//         type: 'number',
+//         message: `Enter their office number.`,
+//     },
+//     gitHub: {
+//         name: 'github',
+//         type: 'input',
+//         message: `Enter their GitHub user name.`,
+//     },
+//     school: {
+//         name: 'school',
+//         type: 'input',
+//         message: `Enter the name of their school.`,
+//     },
+//     addMore: {
+//         name: 'addMore',
+//         type: 'confirm',
+//         message: 'Would you like to add another team member?',
+//     }
+// };
 
 // specific prompts for role, manager, engineer, and intern data, as well as main menu;
 // remove manager name & push main menu to end of array after adding manager
