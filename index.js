@@ -10,128 +10,157 @@ const Intern = require('./lib/intern');
 
 // employee role tbd by answer to mainMenu prompt
 let employeeRole = '';
-let newTeamMember = '';
+let newEmployee = '';
 
 // empty array to hold employees as they are added
 const team = [];
+const fileName = 'team.json';
 
 // all prompts (to be run by inquirer)
-const questionObj = {
+const promptsObj = {
     mainMenu: {
         name: 'mainMenu',
         type: 'list',
         message: 'Select role from below to add a new team member.',
-        choices: ['manager', 'engineer', 'intern', 'Finished adding team members, generate profiles.']
+        choices: ['manager']
     },
     name: {
         name: 'name',
         type: 'input',
-        message: `Enter the ${employeeRole}'s name.`,
+        message: `Enter the new team member's name.`,
     },
     id: {
         name: 'id',
         type: 'number',
-        message: `Enter the ${employeeRole} employee id.`,
+        message: `Enter their employee id.`,
     },
     email: {
         name: 'email',
         type: 'input',
-        message: `Enter the ${employeeRole}'s email address.`,
+        message: `Enter their email address.`,
     },
     officeNum: {
         name: 'officeNum',
         type: 'number',
-        message: `Enter the manager's office number.`,
+        message: `Enter their office number.`,
     },
     gitHub: {
         name: 'github',
         type: 'input',
-        message: `Enter the engineer's GitHub user name.`,
+        message: `Enter their GitHub user name.`,
     },
     school: {
         name: 'school',
         type: 'input',
-        message: `Enter the name of the intern's school.`,
+        message: `Enter the name of their school.`,
     },
+    addMore: {
+        name: 'addMore',
+        type: 'confirm',
+        message: 'Would you like to add another team member?',
+    }
 };
 
 // specific prompts for role, manager, engineer, and intern data, as well as main menu;
 // remove manager name & push main menu to end of array after adding manager
-const employeePrompts = [questionObj.name, questionObj.id, questionObj.email];
+const employeePrompts = [promptsObj.name, promptsObj.id, promptsObj.email, promptsObj.addMore];
 
 // run prompts to gather new team member data 
-function addNewTeamMember() {
+function addNewTeamMember(prompt) {
+    fs.writeFile(fileName, JSON.stringify(team), function (err) {
+        err ? console.log(err) : 
     // main menu prompt to get employee role
-    inquirer.prompt(questionObj.mainMenu)
+    // defaults to manager when program initiated, then all roles for subsequent adds.
+    inquirer.prompt(prompt)
         .then((answers) => {
-            // replace below with function to retrieve team from team.js file, add new employee to existing team, and write file with new team array.
             employeeRole = answers.mainMenu;
             console.log(employeeRole);
-            // check for existing team file
-            // if file exists, prompt main menu, then add employee based on role selected
-            // if no file, start with manager, plugging in role when prompting name, etc.
+            // add new team member by role and write to file
             switch (employeeRole) {
                 case 'manager':
+                    if (promptsObj.mainMenu.length === 1) {
+                        promptsObj.mainMenu.choices.push('engineer', 'intern', 'No more team members, generate profiles now.')
+                    };
                     addManager();
+                    // employeePrompts.push(promptsObj.officeNum);
                     break;
                 case 'engineer':
+                    // push
+                    employeePrompts.splice(3, 0, promptsObj.gitHub);
                     addEngineer();
                     break;
                 case 'intern':
+                    employeePrompts.splice(3, 0, promptsObj.school);
                     addIntern();
                     break;
                 default:
-                // should I add a prompt for default asking if they would like to continue adding more team members? 
-                // could use same prompt for end of questions as well.
+                // generate html file
             }
-        });
+        }
+        )
+    });
 
     function addManager() {
-        employeePrompts.push(questionObj.officeNum);
+        // splice in office number prompt for manager 
+        employeePrompts.splice(3, 0, promptsObj.officeNum);
+        // run prompts
         inquirer.prompt(employeePrompts)
             .then((answers) => {
-                // replace below with function to retrieve team from team.js file, add new employee to existing team, and write file with new team array.
-                newTeamMember = new Manager(answers);
-                writeToFile(newTeamMember);
-                console.log(newTeamMember);
-                console.log(`New ${employeeRole} added to the team!`)
-                return newTeamMember;
+                const newEmployee = new Manager(answers);
+                // console.log(team)
+                console.log(`${answers.name} added as team Manager!`)
+                // console.log(answers)
+                addToFile(fileName, newEmployee);
+                return newEmployee;
             })
     };
 
     function addEngineer() {
-        employeePrompts.push(questionObj.gitHub);
+        employeePrompts.push(promptsObj.gitHub);
         inquirer.prompt(employeePrompts)
             .then((answers) => {
-                team.push = new Engineer(answers);
-                console.log(`New ${employeeRole} added to the team!`)
-                console.log(answers)
-                return team;
+                newEmployee = new Engineer(answers);
+                console.log(`${answers.name} added as an engineer!`)
+                addToFile(fileName, newEmployee);
+                return newEmployee;
             })
     };
 
     function addIntern() {
-        employeePrompts.push(questionObj.school);
+        employeePrompts.push(promptsObj.school);
         inquirer.prompt(employeePrompts)
             .then((answers) => {
                 console.log(answers)
-                team.push = new Intern(answers);
+                newEmployee = new Intern(answers);
                 console.log(`New ${employeeRole} added to the team!`)
-                return team;
+                addToFile(fileName, newEmployee);
+                return newEmployee;
             })
     };
 
-    // function writeToFile(data) {
-    //     fs.writeFile('teamArray.js', data, function (err) {
-    //         err ? console.log(err) : console.log("teamArray.js file created!")
-    //     });
-    // }
+    function addToFile(file, data) {
+        fs.readFile(file, 'utf8', (err, data) => {
+            if (err) {
+                console.error(err);
+            } else {
+                // Convert string into JSON object
+                const parsedTeam = JSON.parse(data);
+
+                // push employee into parsed team array
+                parsedTeam.push(newEmployee);
+
+                // write json file containing array of team member objects
+                fs.writeFile('team.json', JSON.stringify(data), function (err) {
+                    err ? console.log(err) : console.log(`team.json file created!`)
+                })
+            }
+        })
+    };
 
     // add function to 
 
     // add function to read existing team.js file (if it exists), parse data, push new employee to array, and write file (overwriting old array with new array)
     // when writing file initially must be sure to save as array of objects 
-
 };
 
-addNewTeamMember();
+addNewTeamMember(promptsObj.mainMenu);
