@@ -8,161 +8,93 @@ const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 
 // inquirer prompts
-const { managerPrompts, engineerPrompts, internPrompts } = require('prompts.js')
-
-// employee role tbd by answer to mainMenu prompt
-let employeeRole = '';
-let newEmployee = '';
+const promptsObj = require('./lib/prompts')
 
 // empty array to hold employees as they are added
 const team = [];
 const fileName = 'team.json';
 
-// // all prompts (to be run by inquirer)
-// const promptsObj = {
-//     mainMenu: {
-//         name: 'mainMenu',
-//         type: 'list',
-//         message: 'Select role from below to add a new team member.',
-//         choices: ['manager']
-//     },
-//     name: {
-//         name: 'name',
-//         type: 'input',
-//         message: `Enter the new team member's name.`,
-//     },
-//     id: {
-//         name: 'id',
-//         type: 'number',
-//         message: `Enter their employee id.`,
-//     },
-//     email: {
-//         name: 'email',
-//         type: 'input',
-//         message: `Enter their email address.`,
-//     },
-//     officeNum: {
-//         name: 'officeNum',
-//         type: 'number',
-//         message: `Enter their office number.`,
-//     },
-//     gitHub: {
-//         name: 'github',
-//         type: 'input',
-//         message: `Enter their GitHub user name.`,
-//     },
-//     school: {
-//         name: 'school',
-//         type: 'input',
-//         message: `Enter the name of their school.`,
-//     },
-//     addMore: {
-//         name: 'addMore',
-//         type: 'confirm',
-//         message: 'Would you like to add another team member?',
-//     }
-// };
-
-// specific prompts for role, manager, engineer, and intern data, as well as main menu;
-// remove manager name & push main menu to end of array after adding manager
-const employeePrompts = [promptsObj.name, promptsObj.id, promptsObj.email, promptsObj.addMore];
-
 // run prompts to gather new team member data 
-function addNewTeamMember(prompt) {
-    fs.writeFile(fileName, JSON.stringify(team), function (err) {
-        err ? console.log(err) : 
-    // main menu prompt to get employee role
-    // defaults to manager when program initiated, then all roles for subsequent adds.
-    inquirer.prompt(prompt)
-        .then((answers) => {
-            employeeRole = answers.mainMenu;
+function addNewTeamMember(role) {
+            let employeeRole = role;
             console.log(employeeRole);
             // add new team member by role and write to file
             switch (employeeRole) {
-                case 'manager':
-                    if (promptsObj.mainMenu.length === 1) {
-                        promptsObj.mainMenu.choices.push('engineer', 'intern', 'No more team members, generate profiles now.')
-                    };
+                case 'manager':     
                     addManager();
-                    // employeePrompts.push(promptsObj.officeNum);
                     break;
                 case 'engineer':
-                    // push
-                    employeePrompts.splice(3, 0, promptsObj.gitHub);
                     addEngineer();
                     break;
                 case 'intern':
-                    employeePrompts.splice(3, 0, promptsObj.school);
                     addIntern();
                     break;
                 default:
+                    console.log(team);
                 // generate html file
             }
-        }
-        )
-    });
+        };
 
     function addManager() {
-        // splice in office number prompt for manager 
-        employeePrompts.splice(3, 0, promptsObj.officeNum);
-        // run prompts
-        inquirer.prompt(employeePrompts)
+        const managerPrompts = [promptsObj.addManager, promptsObj.managerName, promptsObj.id, promptsObj.email, promptsObj.officeNum, promptsObj.mainMenu];
+        inquirer.prompt(managerPrompts)
             .then((answers) => {
-                const newEmployee = new Manager(answers);
-                // console.log(team)
+                console.log(answers)
+                const manager = new Manager(answers);
+                console.log(manager);
+                team.push(manager);
                 console.log(`${answers.name} added as team Manager!`)
-                // console.log(answers)
-                addToFile(fileName, newEmployee);
-                return newEmployee;
+                addNewTeamMember(answers.mainMenu);
             })
     };
 
     function addEngineer() {
-        employeePrompts.push(promptsObj.gitHub);
-        inquirer.prompt(employeePrompts)
+        const engineerPrompts = [promptsObj.engineerName, promptsObj.id, promptsObj.email, promptsObj.gitHub, promptsObj.mainMenu];
+        inquirer.prompt(engineerPrompts)
             .then((answers) => {
-                newEmployee = new Engineer(answers);
-                console.log(`${answers.name} added as an engineer!`)
-                addToFile(fileName, newEmployee);
-                return newEmployee;
+                const engineer = new Engineer(answers);
+                console.log(engineer);
+                team.push(engineer);
+                console.log(`${answers.name} added as an Engineer!`)
+                addNewTeamMember(answers.mainMenu);
             })
     };
 
     function addIntern() {
-        employeePrompts.push(promptsObj.school);
-        inquirer.prompt(employeePrompts)
+        const internPrompts = [promptsObj.internName, promptsObj.id, promptsObj.email, promptsObj.school, promptsObj.mainMenu];
+        inquirer.prompt(internPrompts)
             .then((answers) => {
-                console.log(answers)
-                newEmployee = new Intern(answers);
-                console.log(`New ${employeeRole} added to the team!`)
-                addToFile(fileName, newEmployee);
-                return newEmployee;
+                const intern = new Intern(answers);
+                console.log(intern)
+                team.push(intern)
+                console.log(`${answers.name} added as an Intern!`)
+                addNewTeamMember(answers.mainMenu);
             })
     };
 
-    function addToFile(file, data) {
-        fs.readFile(file, 'utf8', (err, data) => {
-            if (err) {
-                console.error(err);
-            } else {
-                // Convert string into JSON object
-                const parsedTeam = JSON.parse(data);
+    // function addToFile(file, data) {
+    //     fs.readFile(file, 'utf8', (err, data) => {
+    //         if (err) {
+    //             console.error(err);
+    //         } else {
+    //             // Convert string into JSON object
+    //             const parsedTeam = JSON.parse(data);
 
-                // push employee into parsed team array
-                parsedTeam.push(newEmployee);
+    //             // push employee into parsed team array
+    //             parsedTeam.push(newEmployee);
 
-                // write json file containing array of team member objects
-                fs.writeFile('team.json', JSON.stringify(data), function (err) {
-                    err ? console.log(err) : console.log(`team.json file created!`)
-                })
-            }
-        })
-    };
+    //             // write json file containing array of team member objects
+    //             fs.writeFile('team.json', JSON.stringify(data), function (err) {
+    //                 err ? console.log(err) : console.log(`team.json file created!`)
+    //             })
+    //         }
+    //     })
+    // };
 
-    // add function to 
+    // // add function to 
 
-    // add function to read existing team.js file (if it exists), parse data, push new employee to array, and write file (overwriting old array with new array)
-    // when writing file initially must be sure to save as array of objects 
-};
+    // // add function to read existing team.js file (if it exists), parse data, push new employee to array, and write file (overwriting old array with new array)
+    // // when writing file initially must be sure to save as array of objects 
+// };
 
-addNewTeamMember(promptsObj.mainMenu);
+addNewTeamMember('manager');
