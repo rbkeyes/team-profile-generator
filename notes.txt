@@ -5,3 +5,15 @@ https://jestjs.io/docs/getting-started
 inquirer docs:
 https://www.npmjs.com/package/inquirer/v/8.2.4
 - used to run command-line prompts
+
+DigitalOcean inquirer.js:
+https://www.digitalocean.com/community/tutorials/nodejs-interactive-command-line-prompts
+
+sample team profile generator:
+https://github.com/JamesLJenks/10_OOP-Team-Profile-Generator/blob/master/__tests__/Employee.test.js
+
+mdn web docs - promises:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+
