@@ -17,3 +17,5 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
 
+reset:
+https://piccalil.li/blog/a-modern-css-reset/
