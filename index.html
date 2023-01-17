@@ -23,15 +23,17 @@
     </header>
 
     <main>
-        <div class="d-flex justify-content-around">
-            <div class="row">
-                <div class="col-sm-8 col-md-8 col-lg-">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h5 class="card-title">${icon, role}</h5>
-                            <div class="card">
-                                <ul class="list-group list-group-flush team-info d-flex p-2">
+        <div class="container">
+
+            <div class="d-flex justify-content-center flex-wrap">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${name}</h5>
+                                <h5 class="card-title">${icon, role}</h5>
+                                <ul class="list-group list-group-flush">
                                     <li class="list-group-item">ID: ${id}</li>
                                     <li class="list-group-item">email: <a href='mailto:${email}'
                                             target='blank'>${email}</a>
@@ -43,13 +45,13 @@
                     </div>
                 </div>
 
-                <div class="col-sm-8 col-md-8 col-lg-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h5 class="card-title">${icon, role}</h5>
-                            <div class="card">
-                                <ul class="list-group list-group-flush team-info d-flex p-2">
+                <!-- <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${name}</h5>
+                                <h5 class="card-title">${icon, role}</h5>
+                                <ul class="list-group list-group-flush">
                                     <li class="list-group-item">ID: ${id}</li>
                                     <li class="list-group-item">email: <a href='mailto:${email}'
                                             target='blank'>${email}</a>
@@ -61,13 +63,13 @@
                     </div>
                 </div>
 
-                <div class="col-sm-8 col-md-8 col-lg-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h5 class="card-title">${icon, role}</h5>
-                            <div class="card">
-                                <ul class="list-group list-group-flush team-info d-flex p-2">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${name}</h5>
+                                <h5 class="card-title">${icon, role}</h5>
+                                <ul class="list-group list-group-flush">
                                     <li class="list-group-item">ID: ${id}</li>
                                     <li class="list-group-item">email: <a href='mailto:${email}'
                                             target='blank'>${email}</a>
@@ -78,8 +80,49 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${name}</h5>
+                                <h5 class="card-title">${icon, role}</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">ID: ${id}</li>
+                                    <li class="list-group-item">email: <a href='mailto:${email}'
+                                            target='blank'>${email}</a>
+                                    </li>
+                                    <li class="list-group-item">${role-specific}: ${add-info}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${name}</h5>
+                                <h5 class="card-title">${icon, role}</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">ID: ${id}</li>
+                                    <li class="list-group-item">email: <a href='mailto:${email}'
+                                            target='blank'>${email}</a>
+                                    </li>
+                                    <li class="list-group-item">${role-specific}: ${add-info}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
             </div>
-        </div>    
+
+        </div>
+
+        </div>
+
     </main>
 
     <!-- bootstrap script -->
