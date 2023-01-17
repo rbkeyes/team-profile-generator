@@ -1,62 +1,67 @@
-// array to hold cards once generated
-const teamCards = [];
-
-function getIcon(employee) {
-    let icon = '';
-    switch (employee) {
-        case manager:
-            icon = '<i class="fa-solid fa-business-time"></i>';
-            break;
-        case engineer:
-            icon = '<i class="fa-solid fa-laptop-code"></i>';
-            break;
-        case intern:
-            icon = '<i class="fa-solid fa-graduation-cap"></i>';
-            break;
-        default:
-            icon = '';
-    }
-    return icon;
+function createManagerCard(manager) {
+        return `
+        <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5>${manager.getName()}<h5>
+                    <h5><i class="fa-solid fa-business-time"></i>${manager.getRole()}<h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID: ${manager.getId()}</li>
+                        <li class="list-group-item">Email: <a href='mailto:${manager.getEmail}' target='blank'>${manager.getEmail()}</a></li>
+                        <li class="list-group-item">Office number: ${manager.getOfficeNum()}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+        `
 };
 
-function roleSpecificInfo(category) {
-    let content = '';
-    switch (category) {
-        case officeNum:
-            content = `Office number: ${manager.this.officeNumber}`
-            break;
-        case engineer:
-            content = `Office number: ${engineer.this.officeNumber}`
-            break;
-        case intern:
-            content = `Office number: ${intern.this.officeNumber}`
-            break;
-        default:
-            icon = '';
-    }
-};
-
-function generateCard(employee) {
+function createEngineerCard(engineer) {
     return `
     <div class="row">
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">${employee.this.name}</h5>
-                <h5 class="card-title">${getIcon(employee)}</h5>
+                <h5>${engineer.getName()}<h5>
+                <h5><i class="fa-solid fa-laptop-code"></i></i>${engineer.getRole()}<h5>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: ${employee.this.id}</li>
-                    <li class="list-group-item">email: <a href='mailto:${email}' target='blank'>${employee.this.email}</a></li>
-                    <li class="list-group-item">${roleSpecificInfo(employee)}</li>
+                    <li class="list-group-item">ID: ${engineer.getId()}</li>
+                    <li class="list-group-item">Email: <a href='mailto:${engineer.getEmail()}' target='blank'>${engineer.getEmail()}</a></li>
+                    <li class="list-group-item">GitHub: ${engineer.getGitHub()}</li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
     `
-}
+};
 
-function generateHTML(team) {
+<i class="fa-solid fa-graduation-cap"></i>
+
+function createInternCard(intern) {
+    return `
+    <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <h5>${intern.getName()}<h5>
+                <h5><i class="fa-solid fa-laptop-code"></i></i>${intern.getRole()}<h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">ID: ${intern.getId()}</li>
+                    <li class="list-group-item">Email: <a href='mailto:${intern.getEmail()}' target='blank'>${intern.getEmail()}</a></li>
+                    <li class="list-group-item">School: ${intern.getSchool()}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    `
+
+};
+
+function generateHTML() {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -89,7 +94,7 @@ function generateHTML(team) {
     
                 <div class="d-flex justify-content-center flex-wrap">
     
-                    ${generateCard(manager)}
+                    ${generateManagerCard(manager)}
     
                 </div>
     
@@ -107,4 +112,4 @@ function generateHTML(team) {
     `
 };
 
-module.exports = generateHTML;
+module.exports = { createManagerCard, generateHTML };

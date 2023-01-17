@@ -3,8 +3,8 @@ const promptsObj = {
     addManager: {
         name: 'addManager',
         type: 'list',
-        message: 'Select "manager" from below to start building team.',
-        choices: ['manager']
+        message: `Select "manager" from below to start building team.`,
+        choices: ['manager', 'other', 'Finish building my team.']
     },
     managerName: {
         name: 'name',
