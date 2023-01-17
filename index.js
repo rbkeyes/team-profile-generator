@@ -8,11 +8,10 @@ const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 
 // inquirer prompts
-const promptsObj = require('./lib/prompts')
+const promptsObj = require('./utils/prompts')
 
 // empty array to hold employees as they are added
 const team = [];
-const fileName = 'team.json';
 
 // run prompts to gather new team member data 
 function addNewTeamMember(role) {
@@ -72,7 +71,7 @@ function addNewTeamMember(role) {
             })
     };
 
-    // function addToFile(file, data) {
+    // function generatHTML(team) {
     //     fs.readFile(file, 'utf8', (err, data) => {
     //         if (err) {
     //             console.error(err);
