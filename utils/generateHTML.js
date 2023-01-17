@@ -1,9 +1,64 @@
-const managerIcon = '<i class="fa-solid fa-business-time"></i>';
-const engineerIcon = '<i class="fa-solid fa-laptop-code"></i>';
-const internIcon = '<i class="fa-solid fa-graduation-cap"></i>';
+// array to hold cards once generated
+const teamCards = [];
+
+function getIcon(employee) {
+    let icon = '';
+    switch (employee) {
+        case manager:
+            icon = '<i class="fa-solid fa-business-time"></i>';
+            break;
+        case engineer:
+            icon = '<i class="fa-solid fa-laptop-code"></i>';
+            break;
+        case intern:
+            icon = '<i class="fa-solid fa-graduation-cap"></i>';
+            break;
+        default:
+            icon = '';
+    }
+    return icon;
+};
+
+function roleSpecificInfo(category) {
+    let content = '';
+    switch (category) {
+        case officeNum:
+            content = `Office number: ${manager.this.officeNumber}`
+            break;
+        case engineer:
+            content = `Office number: ${engineer.this.officeNumber}`
+            break;
+        case intern:
+            content = `Office number: ${intern.this.officeNumber}`
+            break;
+        default:
+            icon = '';
+    }
+};
+
+function generateCard(employee) {
+    return `
+    <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">${employee.this.name}</h5>
+                <h5 class="card-title">${getIcon(employee)}</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">ID: ${employee.this.id}</li>
+                    <li class="list-group-item">email: <a href='mailto:${email}' target='blank'>${employee.this.email}</a></li>
+                    <li class="list-group-item">${roleSpecificInfo(employee)}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    `
+}
 
 function generateHTML(team) {
-    return `<!DOCTYPE html>
+    return `
+    <!DOCTYPE html>
     <html lang="en">
     
     <head>
@@ -34,23 +89,7 @@ function generateHTML(team) {
     
                 <div class="d-flex justify-content-center flex-wrap">
     
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">${name}</h5>
-                                    <h5 class="card-title">${icon, role}</h5>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">ID: ${id}</li>
-                                        <li class="list-group-item">email: <a href='mailto:${email}'
-                                                target='blank'>${email}</a>
-                                        </li>
-                                        <li class="list-group-item">${role-specific}: ${add-info}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    ${generateCard(manager)}
     
                 </div>
     
@@ -64,5 +103,8 @@ function generateHTML(team) {
         <script src="index.js"></script>
     </body>
     
-    </html>`
+    </html>
+    `
 };
+
+module.exports = generateHTML;

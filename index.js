@@ -9,9 +9,10 @@ const Intern = require('./lib/intern');
 
 // inquirer prompts
 const promptsObj = require('./utils/prompts')
+const generateHTML = require('./utils/generateHTML')
 
 // empty array to hold employees as they are added
-const team = [];
+let team = [];
 
 // run prompts to gather new team member data 
 function addNewTeamMember(role) {
@@ -40,10 +41,11 @@ function addNewTeamMember(role) {
             .then((answers) => {
                 console.log(answers)
                 const manager = new Manager(answers);
-                console.log(manager);
                 team.push(manager);
-                console.log(`${answers.name} added as team Manager!`)
+                console.log(`${answers.name} added as team Manager!`);
                 addNewTeamMember(answers.mainMenu);
+                generateCard(manager);
+                return manager;
             })
     };
 
@@ -53,9 +55,10 @@ function addNewTeamMember(role) {
             .then((answers) => {
                 const engineer = new Engineer(answers);
                 console.log(engineer);
-                team.push(engineer);
-                console.log(`${answers.name} added as an Engineer!`)
+                team.push(engineer)
+                console.log(`${answers.name} added as an Engineer!`);
                 addNewTeamMember(answers.mainMenu);
+                return engineer;
             })
     };
 
@@ -64,10 +67,11 @@ function addNewTeamMember(role) {
         inquirer.prompt(internPrompts)
             .then((answers) => {
                 const intern = new Intern(answers);
-                console.log(intern)
+                console.log(intern);
                 team.push(intern)
-                console.log(`${answers.name} added as an Intern!`)
+                console.log(`${answers.name} added as an Intern!`);
                 addNewTeamMember(answers.mainMenu);
+                return intern;
             })
     };
 
