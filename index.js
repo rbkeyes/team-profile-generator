@@ -9,10 +9,9 @@ const Intern = require('./lib/intern');
 
 // inquirer prompts
 const promptsObj = require('./utils/prompts')
-const { createManagerCard, generateHTML } = require('./utils/generateHTML')
+const { createManagerCard, createEngineerCard, createInternCard, generateHTML } = require('./utils/generateHTML')
 
 // empty array to hold employees as they are added
-const team = [];
 const teamCards = [];
 
 // run prompts to gather new team member data 
@@ -33,73 +32,60 @@ function addNewTeamMember(role) {
         case 'other':
             inquirer.prompt(promptsObj.mainMenu).then 
         default:
-            console.log(teamCards);
         // generate html file
+        writeHTML(teamCards)
+
+        console.log(...teamCards)
     }
 };
 
+// create new instance of Manager and create manager card HTML string for team HTML file
 function addManager() {
     const managerPrompts = [promptsObj.addManager, promptsObj.managerName, promptsObj.id, promptsObj.email, promptsObj.officeNum, promptsObj.mainMenu];
     inquirer.prompt(managerPrompts)
         .then((answers) => {
             const manager = new Manager(answers);
-            console.log(`${manager.getName()} added as team Manager!`);
             const managerCard = createManagerCard(manager);
+            fileName = `team${manager.getName()}.html`
             teamCards.push(managerCard);
             addNewTeamMember(answers.mainMenu);
             return manager;
         })
 };
 
+// create new instance of Engineer and create engineer card HTML string for team HTML file
 function addEngineer() {
     const engineerPrompts = [promptsObj.engineerName, promptsObj.id, promptsObj.email, promptsObj.gitHub, promptsObj.mainMenu];
     inquirer.prompt(engineerPrompts)
         .then((answers) => {
             const engineer = new Engineer(answers);
-            console.log(engineer);
-            team.push(engineer)
-            console.log(`${answers.name} added as an Engineer!`);
+            const engineerCard = createEngineerCard(engineer);
+            teamCards.push(engineerCard);
             addNewTeamMember(answers.mainMenu);
             return engineer;
         })
 };
 
+// create new instance of Intern and create intern card HTML string for team HTML file
 function addIntern() {
     const internPrompts = [promptsObj.internName, promptsObj.id, promptsObj.email, promptsObj.school, promptsObj.mainMenu];
     inquirer.prompt(internPrompts)
         .then((answers) => {
             const intern = new Intern(answers);
-            console.log(intern);
-            team.push(intern)
-            console.log(`${answers.name} added as an Intern!`);
+            const internCard = createInternCard(intern);
+            teamCards.push(internCard);
             addNewTeamMember(answers.mainMenu);
             return intern;
         })
 };
 
-// function generatHTML(team) {
-//     fs.readFile(file, 'utf8', (err, data) => {
-//         if (err) {
-//             console.error(err);
-//         } else {
-//             // Convert string into JSON object
-//             const parsedTeam = JSON.parse(data);
-
-//             // push employee into parsed team array
-//             parsedTeam.push(newEmployee);
-
-//             // write json file containing array of team member objects
-//             fs.writeFile('team.json', JSON.stringify(data), function (err) {
-//                 err ? console.log(err) : console.log(`team.json file created!`)
-//             })
-//         }
-//     })
-// };
-
-// // add function to 
-
-// // add function to read existing team.js file (if it exists), parse data, push new employee to array, and write file (overwriting old array with new array)
-// // when writing file initially must be sure to save as array of objects 
-// };
+function writeHTML(cards) {
+            const fileName = './dist/teamProfiles.html'
+            const htmlContent = generateHTML(cards);
+            // write html file containing array of team member objects
+            fs.writeFile(fileName, htmlContent, function (err) {
+                err ? console.log(err) : console.log(`${fileName} file created!`)
+            })
+        };
 
 addNewTeamMember('manager');

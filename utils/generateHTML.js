@@ -4,11 +4,15 @@ function createManagerCard(manager) {
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h5>${manager.getName()}<h5>
-                    <h5><i class="fa-solid fa-business-time"></i>${manager.getRole()}<h5>
+                    <h5 class="card-title">
+                    ${manager.getName()}
+                    </h5>
+                    <h5 class="card-title"><
+                    i class="fa-solid fa-business-time"></i> 
+                    ${manager.getRole()}</h5>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">ID: ${manager.getId()}</li>
-                        <li class="list-group-item">Email: <a href='mailto:${manager.getEmail}' target='blank'>${manager.getEmail()}</a></li>
+                        <li class="list-group-item">Email: <a href='mailto:${manager.getEmail}' target="_blank">${manager.getEmail()}</a></li>
                         <li class="list-group-item">Office number: ${manager.getOfficeNum()}</li>
                     </ul>
                 </div>
@@ -24,11 +28,12 @@ function createEngineerCard(engineer) {
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-                <h5>${engineer.getName()}<h5>
-                <h5><i class="fa-solid fa-laptop-code"></i></i>${engineer.getRole()}<h5>
+                <h5>${engineer.getName()}</h5>
+                <h5><i class="fa-solid fa-laptop-code"></i>
+                </i> ${engineer.getRole()}</h5>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: ${engineer.getId()}</li>
-                    <li class="list-group-item">Email: <a href='mailto:${engineer.getEmail()}' target='blank'>${engineer.getEmail()}</a></li>
+                    <li class="list-group-item">Email: <a href='mailto:${engineer.getEmail()}' target="_blank">${engineer.getEmail()}</a></li>
                     <li class="list-group-item">GitHub: ${engineer.getGitHub()}</li>
                 </ul>
             </div>
@@ -38,7 +43,6 @@ function createEngineerCard(engineer) {
     `
 };
 
-<i class="fa-solid fa-graduation-cap"></i>
 
 function createInternCard(intern) {
     return `
@@ -46,11 +50,11 @@ function createInternCard(intern) {
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-                <h5>${intern.getName()}<h5>
-                <h5><i class="fa-solid fa-laptop-code"></i></i>${intern.getRole()}<h5>
+                <h5>${intern.getName()}</h5>
+                <h5><i class="fa-solid fa-graduation-cap"></i> ${intern.getRole()}</h5>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: ${intern.getId()}</li>
-                    <li class="list-group-item">Email: <a href='mailto:${intern.getEmail()}' target='blank'>${intern.getEmail()}</a></li>
+                    <li class="list-group-item">Email: <a href='mailto:${intern.getEmail()}' target="_blank">${intern.getEmail()}</a></li>
                     <li class="list-group-item">School: ${intern.getSchool()}</li>
                 </ul>
             </div>
@@ -61,7 +65,7 @@ function createInternCard(intern) {
 
 };
 
-function generateHTML() {
+function generateHTML(cards) {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -94,7 +98,7 @@ function generateHTML() {
     
                 <div class="d-flex justify-content-center flex-wrap">
     
-                    ${generateManagerCard(manager)}
+                    ${cards}
     
                 </div>
     
@@ -112,4 +116,4 @@ function generateHTML() {
     `
 };
 
-module.exports = { createManagerCard, generateHTML };
+module.exports = { createManagerCard, createEngineerCard, createInternCard, generateHTML };
