@@ -1,0 +1,69 @@
+:root {
+    --main-bg-color: rgb(213, 203, 218);
+    --head-color: rgb(199, 195, 253);
+    --head-bg-color: rgb(38, 30, 49);
+    --card-head-color: rgb(238, 233, 243);
+    --card-head-bg-color: rgb(73, 65, 102);
+    --card-bg-color: rgb(228, 228, 235);
+};
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--main-bg-color);
+}
+
+header {
+    background-color: var(--head-bg-color);
+    padding: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    color: var(--head-color);
+    text-align: center;
+    align-items: center;
+    padding: 2rem;
+    margin: 0;
+};
+
+.container {
+    padding-bottom: 3rem;
+}
+
+.card {
+    min-width: 310px;
+    /* color: var(--card-head-bg-color);
+    background-color: var(--card-bg-color); */
+    color: var(--card-head-color);
+    background-color: var(--card-head-bg-color);
+    padding: .75rem;
+    margin: 1rem;
+}
+
+.card h5 {
+    /* padding: .5rem; */
+    margin-bottom: .5rem;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.list-group-item {
+    color: var(--card-head-bg-color);
+    background-color: var(--card-bg-color);
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--card-head-bg-color);
+    margin: .5, 0, 0;
+};
+
+.team-info {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+};
+
