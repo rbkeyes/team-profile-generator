@@ -1,18 +1,16 @@
 function createManagerCard(manager) {
-        return `
+    return `
         <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">
-                    ${manager.getName()}
-                    </h5>
-                    <h5 class="card-title"><
-                    i class="fa-solid fa-business-time"></i> 
+                    <h5>${manager.getName()}</h5>
+                    <h5><i class="fa-solid fa-business-time"></i> 
                     ${manager.getRole()}</h5>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">ID: ${manager.getId()}</li>
-                        <li class="list-group-item">Email: <a href='mailto:${manager.getEmail}' target="_blank">${manager.getEmail()}</a></li>
+                        <li class="list-group-item">Email: 
+                        <a href='mailto:${manager.getEmail}' target="_blank">${manager.getEmail()}</a></li>
                         <li class="list-group-item">Office number: ${manager.getOfficeNum()}</li>
                     </ul>
                 </div>
@@ -30,11 +28,12 @@ function createEngineerCard(engineer) {
             <div class="card-body">
                 <h5>${engineer.getName()}</h5>
                 <h5><i class="fa-solid fa-laptop-code"></i>
-                </i> ${engineer.getRole()}</h5>
+                ${engineer.getRole()}</h5>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: ${engineer.getId()}</li>
-                    <li class="list-group-item">Email: <a href='mailto:${engineer.getEmail()}' target="_blank">${engineer.getEmail()}</a></li>
-                    <li class="list-group-item">GitHub: ${engineer.getGitHub()}</li>
+                    <li class="list-group-item">Email: 
+                    <a href='mailto:${engineer.getEmail()}' target="_blank">${engineer.getEmail()}</a></li>
+                    <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGitHub()}>${engineer.getGitHub()}</li>
                 </ul>
             </div>
         </div>
@@ -54,7 +53,8 @@ function createInternCard(intern) {
                 <h5><i class="fa-solid fa-graduation-cap"></i> ${intern.getRole()}</h5>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: ${intern.getId()}</li>
-                    <li class="list-group-item">Email: <a href='mailto:${intern.getEmail()}' target="_blank">${intern.getEmail()}</a></li>
+                    <li class="list-group-item">Email: 
+                    <a href='mailto:${intern.getEmail()}' target="_blank">${intern.getEmail()}</a></li>
                     <li class="list-group-item">School: ${intern.getSchool()}</li>
                 </ul>
             </div>
@@ -62,7 +62,6 @@ function createInternCard(intern) {
     </div>
 </div>
     `
-
 };
 
 function generateHTML(cards) {

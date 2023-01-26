@@ -2,54 +2,63 @@
 const Employee = require('../lib/employee');
 
 // const to be used for test
-const employeeObj = { name: 'Bob', id: 0, email: "bob@email.com" };
-console.log(employeeObj);
-const employeeTest = new Employee("Bob", 0, "bob@email.com");
-console.log(employeeTest);
+const testObj = { name: "Bob", id: 0, email: "bob@email.com" }
 
 // tests for Employee 
 describe('Employee class', () => {
-    it('Should return an employee object containing name, id, and email', () => {
-        expect(employeeTest).toEqual(employeeObj);
+    const testEmployee = new Employee(testObj);
+
+    it('Should return an instance of Employee class', () => {
+        expect(testEmployee).toBeInstanceOf(Employee);
+    });
+    it('Should return typeof object', () => {
+        expect(typeof testEmployee).toBe('object');
+    });
+    it('Should contain the employee data entered by the user', () => {
+        expect(testEmployee).toMatchObject(testObj);
     });
 
     describe('getName method', () => {
-        it('Should return this.name', () => {
-            const employeeName = employeeObj.name;
-            console.log(employeeName);
-            const nameTest = employeeTest.getName();
-            console.log(nameTest);
-            expect(nameTest).toEqual(employeeName);
-        })
+        const testName = new Employee(testObj).getName();
+        
+        it('Should return typeof string', () => {
+            expect(typeof testName).toBe('string')
+        });
+        it('Should return input name value', () => {
+            expect(testName).toBe("Bob");
+        });
     });
 
     describe('getID method', () => {
-        it('Should return this.id', () => {
-            const employeeId = employeeObj.id;
-            console.log(employeeId);
-            const idTest = employeeTest.getId();
-            console.log(idTest);
-            expect(idTest).toEqual(employeeId);
-        })
+        const testId = new Employee(testObj).getId();
+
+        it('Should return typeof number', () => {
+            expect(typeof testId).toBe('number');
+        });
+        it('Should return input id value.', () => {
+            expect(testId).toBe(0);
+        });
     });
 
     describe('getEmail method', () => {
-        it('Should return this.email', () => {
-            const employeeEmail = employeeObj.email;
-            console.log(employeeEmail);
-            const emailTest = employeeTest.getEmail();
-            console.log(emailTest);
-            expect(emailTest).toEqual(employeeEmail);
-        })
+        const testEmail = new Employee(testObj).getEmail();
+
+        it('Should return typeof string', () => {
+            expect(typeof testEmail).toBe('string');
+        });
+        it('Should return input email value', () => {
+            expect(testEmail).toBe("bob@email.com");
+        });
     });
 
     describe('getRole method', () => {
+        const testRole = new Employee(testObj).getRole();
+
+        it('Should return typeof string', () => {
+            expect(typeof testRole).toBe('string');
+        });
         it('Should return "Employee"', () => {
-            const employeeRole = "Employee";
-            console.log(employeeRole);
-            const roleTest = employeeTest.getRole();
-            console.log(roleTest);
-            expect(roleTest).toEqual(employeeRole);
-        })
+            expect(testRole).toEqual('Employee');
+        });
     });
 });
