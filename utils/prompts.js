@@ -31,8 +31,8 @@ const promptsObj = {
         type: 'input',
         message: `Enter their email address.`,
     },
-    officeNum: {
-        name: 'officeNum',
+    officeNumber: {
+        name: 'officeNumber',
         type: 'number',
         message: `Enter their office number.`,
     },

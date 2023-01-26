@@ -4,7 +4,8 @@ const Employee = require('../lib/employee');
 // const to be used for test
 const employeeObj = { name: 'Bob', id: 0, email: "bob@email.com" };
 console.log(employeeObj);
-const employeeTest = new Employee("Bob", 0, "bob@email.com");
+const testObj = {name: "Bob", id: 0, email: "bob@email.com"}
+const employeeTest = new Employee(testObj);
 console.log(employeeTest);
 
 // tests for Employee 
@@ -16,9 +17,7 @@ describe('Employee class', () => {
     describe('getName method', () => {
         it('Should return this.name', () => {
             const employeeName = employeeObj.name;
-            console.log(employeeName);
             const nameTest = employeeTest.getName();
-            console.log(nameTest);
             expect(nameTest).toEqual(employeeName);
         })
     });
@@ -26,9 +25,7 @@ describe('Employee class', () => {
     describe('getID method', () => {
         it('Should return this.id', () => {
             const employeeId = employeeObj.id;
-            console.log(employeeId);
             const idTest = employeeTest.getId();
-            console.log(idTest);
             expect(idTest).toEqual(employeeId);
         })
     });
@@ -36,9 +33,7 @@ describe('Employee class', () => {
     describe('getEmail method', () => {
         it('Should return this.email', () => {
             const employeeEmail = employeeObj.email;
-            console.log(employeeEmail);
             const emailTest = employeeTest.getEmail();
-            console.log(emailTest);
             expect(emailTest).toEqual(employeeEmail);
         })
     });
@@ -46,9 +41,7 @@ describe('Employee class', () => {
     describe('getRole method', () => {
         it('Should return "Employee"', () => {
             const employeeRole = "Employee";
-            console.log(employeeRole);
             const roleTest = employeeTest.getRole();
-            console.log(roleTest);
             expect(roleTest).toEqual(employeeRole);
         })
     });

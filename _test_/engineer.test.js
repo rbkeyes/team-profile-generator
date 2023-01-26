@@ -3,9 +3,8 @@ const Engineer = require('../lib/Engineer');
 
 // const to be used for test
 const engineerObj = {name: 'Parker', id: 2, email: "parker@email.com", gitHub: 'pretendparker'};
-console.log(engineerObj);
-const engineerTest = new Engineer('Parker', 2, 'parker@email.com', 'pretendparker')
-console.log(engineerTest);
+const testObj = {name: 'Parker', id: 2, email: "parker@email.com", gitHub: 'pretendparker'};
+const engineerTest = new Engineer(testObj);
 
 // tests for engineer 
 describe('Engineer class', () => {
@@ -16,9 +15,7 @@ describe('Engineer class', () => {
     describe('getRole method', () => {
         it('Should return "Engineer"', () => {
             const engineerRole = "Engineer";
-            console.log(engineerRole);
             const roleTest = engineerTest.getRole();
-            console.log(roleTest);
             expect(roleTest).toEqual(engineerRole);
         })
     });
