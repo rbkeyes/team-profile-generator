@@ -25,7 +25,7 @@ In building this application, I was able to gain a better understanding of async
 
 ## Installation
 
-To use this program, you must first install [node.js](https://nodejs.org/en/)).
+To use this program, you must first install [node.js](https://nodejs.org/en/).
 
 Because this repository contains the package.json needed to run the application, simply use the command `npm i inquirer@8.2.4` to install both the `Inquirer` package, which is used to run the prompts, and `JEST`, which runs tests.
 
