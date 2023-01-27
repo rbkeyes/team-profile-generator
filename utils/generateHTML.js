@@ -4,9 +4,9 @@ function createManagerCard(manager) {
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h5>${manager.getName()}</h5>
-                    <h5><i class="fa-solid fa-business-time"></i> 
-                    ${manager.getRole()}</h5>
+                    <h2>${manager.getName()}</h2>
+                    <h3><i class="fa-solid fa-business-time"></i> 
+                    ${manager.getRole()}</h3>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">ID: ${manager.getId()}</li>
                         <li class="list-group-item">Email: 
@@ -26,14 +26,14 @@ function createEngineerCard(engineer) {
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-                <h5>${engineer.getName()}</h5>
-                <h5><i class="fa-solid fa-laptop-code"></i>
-                ${engineer.getRole()}</h5>
+                <h2>${engineer.getName()}</h2>
+                <h3><i class="fa-solid fa-laptop-code"></i>
+                ${engineer.getRole()}</h3>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: ${engineer.getId()}</li>
                     <li class="list-group-item">Email: 
                     <a href='mailto:${engineer.getEmail()}' target="_blank">${engineer.getEmail()}</a></li>
-                    <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGitHub()}>${engineer.getGitHub()}</li>
+                    <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGitHub()}">${engineer.getGitHub()}</a></li>
                 </ul>
             </div>
         </div>
@@ -49,8 +49,8 @@ function createInternCard(intern) {
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-                <h5>${intern.getName()}</h5>
-                <h5><i class="fa-solid fa-graduation-cap"></i> ${intern.getRole()}</h5>
+                <h2>${intern.getName()}</h2>
+                <h3><i class="fa-solid fa-graduation-cap"></i> ${intern.getRole()}</h3>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: ${intern.getId()}</li>
                     <li class="list-group-item">Email: 
@@ -102,13 +102,9 @@ function generateHTML(cards) {
                 </div>
     
             </div>
-    
-            </div>
-    
+        
         </main>
     
-        <!-- bootstrap script -->
-        <script src="index.js"></script>
     </body>
     
     </html>

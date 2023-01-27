@@ -41,7 +41,7 @@ function addNewTeamMember(role) {
 
 // create new instance of Manager and create manager card HTML string for team HTML file
 function addManager() {
-    const managerPrompts = [promptsObj.addManager, promptsObj.managerName, promptsObj.id, promptsObj.email, promptsObj.officeNumber, promptsObj.mainMenu];
+    const managerPrompts = [promptsObj.managerName, promptsObj.id, promptsObj.email, promptsObj.officeNumber, promptsObj.mainMenu];
     inquirer.prompt(managerPrompts)
         .then((answers) => {
             const manager = new Manager(answers);

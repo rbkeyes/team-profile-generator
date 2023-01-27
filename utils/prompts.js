@@ -1,15 +1,9 @@
 // all prompts (to be run by inquirer)
 const promptsObj = {
-    addManager: {
-        name: 'addManager',
-        type: 'list',
-        message: `Select "manager" from below to start building team.`,
-        choices: ['manager', 'other', 'Finish building my team.']
-    },
     managerName: {
         name: 'name',
         type: 'input',
-        message: `Enter the manager's name.`,
+        message: `Enter the manager's name to start building your team.`,
     },
     engineerName: {
         name: 'name',
