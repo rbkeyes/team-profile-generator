@@ -43,6 +43,10 @@ in the command line. Follow the prompts and enter the requested information, sta
 [GitHub repository](https://github.com/rbkeyes/team-profile-generator)
 
 
+https://user-images.githubusercontent.com/114431225/215179275-20aef60b-b775-43e9-ad96-252cefd71458.mp4
+
+
+
 ## Credits
 
 Coursework from coding bootcamp heavily referenced while building this app, along with the following resources:
