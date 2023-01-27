@@ -1,23 +1,23 @@
 function createManagerCard(manager) {
     return `
-        <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <h2>${manager.getName()}</h2>
-                    <h3><i class="fa-solid fa-business-time"></i> 
-                    ${manager.getRole()}</h3>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${manager.getId()}</li>
-                        <li class="list-group-item">Email: 
-                        <a href='mailto:${manager.getEmail}' target="_blank">${manager.getEmail()}</a></li>
-                        <li class="list-group-item">Office number: ${manager.getOfficeNum()}</li>
-                    </ul>
-                </div>
+    <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <h2>${manager.getName()}</h2>
+                <h3><i class="fa-solid fa-business-time"></i> 
+                ${manager.getRole()}</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">ID: ${manager.getId()}</li>
+                    <li class="list-group-item">Email: 
+                    <a href='mailto:${manager.getEmail()}' target="_blank">${manager.getEmail()}</a></li>
+                    <li class="list-group-item">Office number: ${manager.getOfficeNum()}</li>
+                </ul>
             </div>
         </div>
     </div>
-        `
+    </div>
+    `
 };
 
 function createEngineerCard(engineer) {
