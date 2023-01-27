@@ -34,14 +34,9 @@ To run tests, install [jest](https://jestjs.io/docs/getting-started).
 
 ## Usage
 
-To start the application, open an integrated terminal and run 
-```
-node index
-```
-in the command line. Follow the prompts and enter the requested information, starting with team manager. Once all members of the team have been added, select "Finish building my team" and an HTML file titled ```teamProfiles.html``` will be written and added to the ```dist``` directory. 
+To start the application, open an integrated terminal and run ```node index``` from the command line. Follow the prompts and enter the requested information, starting with team manager. Once all members of the team have been added, select "Finish building my team" and an HTML file titled ```teamProfiles.html``` will be written and added to the ```dist``` directory. 
 
 [GitHub repository](https://github.com/rbkeyes/team-profile-generator)
-
 
 https://user-images.githubusercontent.com/114431225/215179275-20aef60b-b775-43e9-ad96-252cefd71458.mp4
 
@@ -64,8 +59,4 @@ Coursework from coding bootcamp heavily referenced while building this app, alon
 
 ## Tests
 
-Tests for the class modules Employee, Manager, Engineer, and Intern can be found in the ```_test_``` directory. Tests are run using jest.js - see [documention](https://jestjs.io/) for installation and usage. To run tests, enter 
-```
-npm test
-``` 
-in the command line.
+Tests for the class modules Employee, Manager, Engineer, and Intern can be found in the ```_test_``` directory. Tests are run using jest.js - see [documention](https://jestjs.io/) for installation and usage. To start tests, run ```npm test``` from the command line.
