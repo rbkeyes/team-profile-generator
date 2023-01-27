@@ -2,21 +2,41 @@
 const Engineer = require('../lib/Engineer');
 
 // const to be used for test
-const engineerObj = {name: 'Parker', id: 2, email: "parker@email.com", gitHub: 'pretendparker'};
 const testObj = {name: 'Parker', id: 2, email: "parker@email.com", gitHub: 'pretendparker'};
-const engineerTest = new Engineer(testObj);
 
 // tests for engineer 
 describe('Engineer class', () => {
-    it('Should return an employee object containing github username in addition to basic employee info', () => {
-        expect(engineerTest).toEqual(engineerObj);
+    const testEngineer = new Engineer(testObj);
+
+    it('Should return an instance of Engineer class', () => {
+        expect(testEngineer).toBeInstanceOf(Engineer);
+    });
+    it('Should return typeof object', () => {
+        expect(typeof testEngineer).toBe('object');
+    });
+    it('Should contain the Engineer data entered by the user', () => {
+        expect(testEngineer).toMatchObject(testObj);
+    });
+
+    describe('getGitHub() method', () => {
+        const testGitHub = new Engineer(testObj).getGitHub();
+
+        it('Should return typeof number', () => {
+            expect(typeof testGitHub).toBe('string');
+        });
+        it('Should return input GitHub username value.', () => {
+            expect(testGitHub).toBe('pretendparker');
+        });
     });
 
     describe('getRole method', () => {
+        const testRole = new Engineer(testObj).getRole();
+
+        it('Should return typeof string', () => {
+            expect(typeof testRole).toBe('string');
+        });
         it('Should return "Engineer"', () => {
-            const engineerRole = "Engineer";
-            const roleTest = engineerTest.getRole();
-            expect(roleTest).toEqual(engineerRole);
-        })
+            expect(testRole).toEqual('Engineer');
+        });
     });
 });
