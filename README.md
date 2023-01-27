@@ -45,7 +45,7 @@ in the command line. Follow the prompts and enter the requested information, sta
 
 https://user-images.githubusercontent.com/114431225/215179275-20aef60b-b775-43e9-ad96-252cefd71458.mp4
 
-
+```sampleTeamProfiles.html```, a sample file containing the team profiles generated in the demo, can be found in the ```dist``` directory.
 
 ## Credits
 
