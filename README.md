@@ -27,20 +27,18 @@ In building this application, I was able to gain a better understanding of async
 
 To use this program, you must first install [node.js](https://nodejs.org/en/)).
 
-Next you will install the [inquirer](https://www.npmjs.com/package/inquirer) npm. 
-
-To run tests, install [jest](https://jestjs.io/docs/getting-started).
+Because this repository contains the package.json needed to run the application, simply use the command `npm i inquirer@8.2.4` to install both the `Inquirer` package, which is used to run the prompts, and `JEST`, which runs tests.
 
 
 ## Usage
 
-To start the application, open an integrated terminal and run ```node index``` from the command line. Follow the prompts and enter the requested information, starting with team manager. Once all members of the team have been added, select "Finish building my team" and an HTML file titled ```teamProfiles.html``` will be written and added to the ```dist``` directory. 
+To start the application, open an integrated terminal and run ```node index``` from the command line. Follow the prompts and enter the requested information, starting with team manager. Once all members of the team have been added, select "Finish building my team" and an HTML file titled `teamProfiles.html` will be written and added to the `dist` directory. 
 
 [GitHub repository](https://github.com/rbkeyes/team-profile-generator)
 
 https://user-images.githubusercontent.com/114431225/215179275-20aef60b-b775-43e9-ad96-252cefd71458.mp4
 
-```sampleTeamProfiles.html```, a sample file containing the team profiles generated in the demo, can be found in the ```dist``` directory.
+`sampleTeamProfiles.html`, a sample file containing the team profiles generated in the demo, can be found in the `dist` directory.
 
 ## Credits
 
@@ -59,4 +57,11 @@ Coursework from coding bootcamp heavily referenced while building this app, alon
 
 ## Tests
 
-Tests for the class modules Employee, Manager, Engineer, and Intern can be found in the ```_test_``` directory. Tests are run using jest.js - see [documention](https://jestjs.io/) for installation and usage. To start tests, run ```npm test``` from the command line.
+Tests for the class modules Employee, Manager, Engineer, and Intern can be found in the `_test_` directory. Tests are run using `Jest` - see [documention](https://jestjs.io/) for more information on using `Jest`. To start tests, run ```npm test``` from the command line.
+
+
+## Contact
+
+Still have questions? Find me on [GitHub](https://github.com/rbkeyes).
+
+Or, you can [email me](mailto:rbkeyes@gmail.com).
