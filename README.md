@@ -1,12 +1,18 @@
 # Team Profile Generator
 
+![GitHub language count](https://img.shields.io/github/languages/count/rbkeyes/team-profile-generator?color=magenta)
+![GitHub top language](https://img.shields.io/github/languages/top/rbkeyes/team-profile-generator)
+![repo License](https://img.shields.io/github/license/rbkeyes/team-profile-generator?color=purple)
+
+
 ## Description
 
-A command line application that uses node.js and npm inquirer to gather information about a series of team members, and generates an html file containing a well-formatted, easy-to-read team roster. Each role has a different series of prompts designed to gather specific information relevant to each role.
+A command line application that uses node.js and npm inquirer to gather information about a series of team members, and generates an html file containing a well-formatted, easy-to-read team roster. Each role has a different series of prompts designed to gather specific information relevant to each team member.
 
 This application was designed to provide a simple way for an employer to easily add and keep track of relevant information about their team. 
 
 In building this application, I was able to gain a better understanding of asynchronous programming and class constructors. It also provided good practice writing tests using jest.js. 
+
 
 ## Table of Contents
 
@@ -14,50 +20,48 @@ In building this application, I was able to gain a better understanding of async
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
+- [Tests](#tests)
+
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+To use this program, you must first install [node.js](https://nodejs.org/en/)).
+
+Next you will install the [inquirer](https://www.npmjs.com/package/inquirer) npm. 
+
+To run tests, install [jest](https://jestjs.io/docs/getting-started).
+
 
 ## Usage
 
+To start the application, open an integrated terminal and run 
+```
+node index
+```
+in the command line. Follow the prompts and enter the requested information, starting with team manager. Once all members of the team have been added, select "Finish building my team" and an HTML file titled ```teamProfiles.html``` will be written and added to the ```dist``` directory. 
 
-Provide instructions and examples for use. Include screenshots as needed.
+[GitHub repository](https://github.com/rbkeyes/team-profile-generator)
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
+Coursework from coding bootcamp heavily referenced while building this app, along with the following resources:
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
+- [css reset](https://piccalil.li/blog/a-modern-css-reset/)
+- [inquirer docs](https://www.npmjs.com/package/inquirer/v/8.2.4)
+- [JEST docs](https://jestjs.io/docs/getting-started)
 
-If you followed tutorials, include links to those here as well.
 
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+[MIT license](./LICENSE)
 
----
 
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
-
-## Badges
-
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-
-## Features
-
-If your project has a lot of features, list them here.
-
-## How to Contribute
-
-If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
 
 ## Tests
+
+Tests for the class modules Employee, Manager, Engineer, and Intern can be found in the ```_test_``` directory. Tests are run using jest.js - see [documention](https://jestjs.io/) for installation and usage. To run tests, enter 
+```
+npm test
+``` 
+in the command line.

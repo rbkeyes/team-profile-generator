@@ -44,7 +44,7 @@ h1 {
 }
 
 .card {
-    min-width: 325px;
+    width: 325px;
     color: var(--card-head-color);
     background-color: var(--card-head-bg-color);
     box-shadow: 5px 5px 10px var(--shadow);

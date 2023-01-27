@@ -3,7 +3,7 @@ const promptsObj = {
     managerName: {
         name: 'name',
         type: 'input',
-        message: `Enter the manager's name to start building your team.`,
+        message: `Enter the manager's name to get started.`,
     },
     engineerName: {
         name: 'name',
