@@ -29,8 +29,6 @@ function addNewTeamMember(role) {
         case 'intern':
             addIntern();
             break;
-        case 'other':
-            inquirer.prompt(promptsObj.mainMenu).then 
         default:
         // generate html file
         writeHTML(teamCards)
