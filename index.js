@@ -46,7 +46,6 @@ function addManager() {
         .then((answers) => {
             const manager = new Manager(answers);
             const managerCard = createManagerCard(manager);
-            fileName = `team${manager.getName()}.html`
             teamCards.push(managerCard);
             addNewTeamMember(answers.mainMenu);
             return manager;
